@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 #include <sys/wait.h>
+#include <signal.h>
 bool sigue = true;
 execvp();
 void Help(char **args)
@@ -51,6 +52,18 @@ char **Parse(char *cadena)
     {
         return NULL;
     }
+    for (int i = 0; cadena[i] != '\0'; i++)
+    {
+        if (cadena[i] == '#')
+        {
+            cadena[i] = '\0';
+            for (int j = i; cadena[j] != '\0'; j++)
+            {
+                cadena[j] = '\0';
+            }
+        }
+    }
+    printf("%s", cadena);
 
     return Split(Split(cadena, "#\n")[0], "|");
 }
@@ -195,8 +208,8 @@ void Ejecutar(char **args)
         }
         if (pid == 0)
         {
-            printf("estoy en el hijo uno\n");
-            // hijo
+            // printf("estoy en el hijo uno\n");
+            //  hijo
             close(pip[0]);
             dup2(pip[1], 1);
             if (execvp(args_split[0], args_split) == -1)
@@ -205,7 +218,7 @@ void Ejecutar(char **args)
                 exit(1);
             }
         }
-        printf("Se supone que hce algo\n");
+        // printf("Se supone que hce algo\n");
         pid_t pid1 = fork();
         if (pid1 == -1)
         {
@@ -213,7 +226,7 @@ void Ejecutar(char **args)
         }
         if (pid1 == 0)
         {
-            printf("estoy en mi segundo hijo\n");
+            // printf("estoy en mi segundo hijo\n");
 
             // hijo 2
             close(pip[1]);
@@ -226,17 +239,37 @@ void Ejecutar(char **args)
             }
             exit(1);
         }
-        printf("hice algo en mi hijo 2 que no estoy imprimiendo");
+        // printf("hice algo en mi hijo 2 que no estoy imprimiendo");
         close(pip[0]);
         close(pip[1]);
         waitpid(pid, NULL, 0);
         waitpid(pid1, NULL, 0);
     }
 }
+int count = 0;
+
+void signal_handler(int sig)
+{
+    if (sig == SIGINT)
+    {
+        count++;
+        if (count == 2)
+        {
+            printf("CTRL + C signal received. Exiting...\n");
+            exit(EXIT_SUCCESS);
+        }
+        else
+        {
+            printf("Signal Received\n");
+        }
+    }
+}
 
 int main()
 {
+
     char entrada[BUFSIZ];
+    signal(SIGINT, signal_handler);
     while (sigue)
     {
         printf("Yoan~Kevin~$ ");

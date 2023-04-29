@@ -1,0 +1,3 @@
+Para la implementación del ctrl+C utilizamos la funcion signal para capturar la señal
+luego llevamos esa señal a una funcion signal signal_handler
+que actualiza un contador, cuando este contador llegue a 2 entonces se sale del shell.

@@ -18,6 +18,11 @@ void Help(char **args)
         char *argv[] = {"cat", "help", NULL};
         execvp(argv[0], argv);
     }
+    else if (strcmp(args[1], "ctrl+c") == 0)
+    {
+        char *argv[] = {"cat", "signal", NULL};
+        execvp(argv[0], argv);
+    }
     else if (strcmp(args[1], "cd") == 0)
     {
         char *argv[] = {"cat", "cd", NULL};
@@ -32,6 +37,10 @@ void Help(char **args)
     {
         char *argv[] = {"cat", "bas.txt", NULL};
         execvp(argv[0], argv);
+    }
+    else
+    {
+        exit(1);
     }
 }
 char **Split(char *cadena, char delimitador[])

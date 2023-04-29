@@ -1,0 +1,28 @@
+Aquí trataremos la implementacion básica de nuestro shell
+desde el momento en que se introduce la cadena hasta su ejecución
+
+Recibimos la cadena con la funcion fgets.
+Luego la parseamos, o sea eliminamos toda la cadena
+a partir del signo '#', quitamos los espacios
+y guardamos esta cadena parseada.
+
+En caso de que presente tubería separamos la cadena recibida
+en dos subcadenas una antes de la tubería y la otra despues de esta.
+
+A partir de este punto realizamos lo mismo para ambas implementaciones.
+
+En caso de no haber redirección se crea el proceso hijo
+y este ejecuta el comando 
+(con la función execvp la cual acaba con el hijo una vez terminada 
+(siento que soy un buen padre enviando a mi hijo a una trampa ☻))
+
+Revisamos si hay redirección (<,>,>>) y si hay creamos los archivos
+hacia los cuales (o de donde) voy a escribir (o leer)
+la información. Después utilizamos la funcion dup2 
+para crear un duplicado de este archivo en la salida (entrada)
+estándar y ejecutamos el comando en otro proceso.
+
+Luego si hay tubería ejecutamos los comandos anteriores para ambas partes
+de la tubería (aquí en vez de matar a uno, acabo con dos ☻ ☻)
+
+Luego esta es la implementación de nuestro shell rogamos no le avisen a las autoridades de lo aquí expuesto.

@@ -11,7 +11,6 @@
 #include <sys/wait.h>
 #include <signal.h>
 bool sigue = true;
-execvp();
 void Help(char **args)
 {
     if (args[1] == NULL)
@@ -27,6 +26,11 @@ void Help(char **args)
     else if (strcmp(args[1], "exit") == 0)
     {
         char *argv[] = {"cat", "exit", NULL};
+        execvp(argv[0], argv);
+    }
+    else if (strcmp(args[1], "basic") == 0)
+    {
+        char *argv[] = {"cat", "bas.txt", NULL};
         execvp(argv[0], argv);
     }
 }

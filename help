@@ -1,7 +1,13 @@
 Integrantes: Yoan Rene Ramos Corrales y Kevin Majim Ortega Alvarez
 
 Funcionalidades:
-basic: funcionalidades basicas (3-ptos)
+basic: funcionalidades básicas (3-ptos)
 help: ayuda (1-pto)
+crtl+c: capturar y enviar señales a procesos
 
-Total: 4 ptos.
+omandos built-in:
+cd: cambia de directorios
+exit: termina el shell
+help: muestra esta ayuda 
+
+Total: 5 ptos.

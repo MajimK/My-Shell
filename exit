@@ -1,0 +1,1 @@
+Al llamar a exit, el shell ejecuta la función de su mismo nombre, por lo que saldremos de la ejecución del programa.

@@ -1,0 +1,7 @@
+Para la implementacion del cd utilizamos la función chdir.
+
+Esta función recibe una dirección como parámetro y traslada la dirección actual hacia donde indica el parámetro.
+
+Si recibe ".." como parámetronos envía a la dirección anterior
+
+En caso de no tener parámetro nos envía a /home.

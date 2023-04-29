@@ -28,11 +28,6 @@ void Help(char **args)
         char *argv[] = {"cat", "exit", NULL};
         execvp(argv[0], argv);
     }
-    else if (args[1] == "|")
-    {
-        char *argv[] = {"cat", "tuberia1", NULL};
-        execvp(argv[0], argv);
-    }
 }
 char **Split(char *cadena, char delimitador[])
 {
@@ -246,7 +241,7 @@ int main()
     char entrada[BUFSIZ];
     while (sigue)
     {
-        printf("my~prompt~$ ");
+        printf("Yoan~Kevin~$ ");
         fgets(entrada, BUFSIZ, stdin);
         char **in_parse = Parse(entrada);
         Ejecutar(in_parse);

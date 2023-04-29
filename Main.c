@@ -76,7 +76,6 @@ void Ejecutar(char **args)
                 if (in_input < 0)
                 {
                     perror("Failed to open input file");
-                    exit(1);
                 }
                 args_split[i] = NULL;
                 // args_split[i + 1] = NULL;
@@ -92,7 +91,6 @@ void Ejecutar(char **args)
                 if (in_output < 0)
                 {
                     perror("Failed to open output file");
-                    exit(1);
                 }
                 args_split[i] = NULL;
                 // args_split[i + 1] = NULL;
